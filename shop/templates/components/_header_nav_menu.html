@@ -1,0 +1,27 @@
+{% load i18n %}
+{% load store_tags %}
+<ul class="header_nav-menu d-flex justify-content-center flex-wrap text-center">
+    {% get_categories as categories %}
+    {% for category in categories %}
+        <li class="header_nav-item">
+            <a class="header_nav-link " href="{{ category.get_absolute_url }}">{{ category.title|upper }}</a>
+        </li>
+    {% endfor %}
+
+    <li class="header_nav-item mt-3 mt-lg-0">
+        <a class="header_nav-link " href="{% url 'cart' %}">{% trans 'MY CART' %}</a>
+    </li>
+
+    <li class="header_nav-item mt-3 mt-lg-0">
+        {% if request.user.is_authenticated %}
+        <a class="header_nav-link " href="{% url 'logout' %}">
+            {% trans 'LOGOUT' %}
+        </a>
+        {% else %}
+        <a class="header_nav-link " href="{% url 'login_registration' %}">
+            SIGN UP/SIGN IN
+        </a>
+        {% endif %}
+
+    </li>
+</ul>

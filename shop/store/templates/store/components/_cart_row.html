@@ -1,0 +1,27 @@
+{% load static %}
+<div class="cart-row">
+    <div style="flex:2"><img class="row-image" src="{{ item.product.get_first_photo }}"></div>
+    <div style="flex:2"><p>{{ item.product.title }}</p></div>
+    <div style="flex:1"><p>${{ item.product.price }}</p></div>
+    <div style="flex:1"><p class="quantity">{{ item.quantity }}</p>
+    {% if 'cart' in request.path %}
+        <div class="quantity">
+            {% if item.product.quantity > 0 %}
+            <a href="{% url 'to_cart' item.product.pk 'add' %}">
+                <img data-product="id" data-action="add"
+                     class="chg-quantity update-cart"
+                     src="{% static 'store/images/arrow-up.png' %}">
+            </a>
+            {% endif %}
+            <a href="{% url 'to_cart' item.product.pk 'delete' %}">
+                <img data-product="id" data-action="remove"
+                     class="chg-quantity update-cart"
+                     src="{% static 'store/images/arrow-down.png' %}">
+            </a>
+
+        </div>
+    {% endif %}
+
+    </div>
+    <div style="flex:1"><p>${{ item.get_total_price }}</p></div>
+</div>

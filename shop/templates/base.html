@@ -1,0 +1,49 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% include 'components/_styles.html' %}
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+</head>
+
+<body>
+    <header>
+        <!-- HEADER NAV START -->
+        {% include 'components/_navbar.html' %}
+
+        <!-- HEADER NAV END -->
+
+        <!-- HEADER TEXT BLOCK START -->
+        {% block header_text %}
+        {% include 'components/_header_text.html' %}
+        {% endblock header_text %}
+
+        <!-- HEADER TEXT BLOCK END -->
+
+        <!-- HEADER POSTER START -->
+        {% block header_poster %}
+        {% include 'components/_header_poster.html' %}
+        {% endblock header_poster %}
+
+
+        <!-- HEADER POSTER END -->
+    </header>
+
+{% block main %}
+
+{% endblock main %}
+
+{% include 'layout/footer.html' %}
+
+{% include 'components/_scripts.html' %}
+
+</body>
+
+</html>

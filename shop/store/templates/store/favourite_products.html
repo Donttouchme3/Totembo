@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block header_text %}
+
+{% endblock header_text %}
+
+
+{% block header_poster %}
+
+{% endblock header_poster %}
+
+{% block main %}
+<main>
+        <!-- SALES BLOCK START -->
+
+        <!-- SALES BLOCK END -->
+
+        <section class="category_products">
+            <!-- PRODUCTS FILTER START -->
+            <div class="products_filter">
+                <div class="container">
+                    <div class="row justify-content-around">
+                        <h3>Мои избранные товары</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCTS FILTER END -->
+
+            <!-- PRODUCTS BLOCK START -->
+            <div class="container">
+                <div class="row">
+                    {% for product in products %}
+                        {% include 'store/components/_product_card.html' %}
+                    {% endfor %}
+                </div>
+            </div>
+            <!-- PRODUCTS BLOCK END -->
+
+            <!-- PAGINATION START -->
+            {% include 'store/components/_pagination.html' %}
+
+            <!-- PAGINATION END -->
+        </section>
+    </main>
+{% endblock main %}

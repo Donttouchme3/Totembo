@@ -1,0 +1,32 @@
+{% load i18n %}
+{% load static %}
+<div class="header_panel">
+    <div class="header_panel-item">
+        <img src="{% static 'store/images/icons/search_icon.svg' %}" alt="">
+    </div>
+    <div class="header_panel-item">
+        <a href="{% url 'favourite_products' %}">
+            <img src="{% static 'store/images/icons/basket_icon.svg' %}" alt="">
+        </a>
+    </div>
+    <div class="header_panel-item">
+        <!--        <img src="{% static 'store/images/icons/ru_lang_icon.svg' %}" alt="">-->
+        <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}">
+            <select name="language">
+                {% get_current_language as LANGUAGE_CODE %}
+                {% get_available_languages as LANGUAGES %}
+                {% get_language_info_list for LANGUAGES as languages %}
+                {% for language in languages %}
+                <option value="{{ language.code }}" {% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+                    {{ language.name_local }} ({{ language.code }})
+                </option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Go">
+        </form>
+    </div>
+    <div class="header_panel-item">
+        <img src="{% static 'store/images/icons/user_icon.svg' %}" alt="">
+    </div>
+</div>

@@ -1,0 +1,32 @@
+{% load store_tags %}
+{% get_sorted as data %}
+{% get_subcategories category as categories %}
+{% for key in data %}
+<div class="dropdown pt-2 pt-lx-0">
+    <button class="products_filter-dropdown dropdown-toggle" type="button" id="dropdownColor"
+            data-bs-toggle="dropdown" aria-expanded="false">
+        {{ key.title }}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownColor">
+        {% for sorter in key.sorters %}
+            <li><a class="dropdown-item" href="?sort={{ sorter.0 }}">{{ sorter.1 }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+
+
+<div class="dropdown pt-2 pt-lx-0">
+    <button class="products_filter-dropdown dropdown-toggle" type="button"
+            id="dropdownWatchType" data-bs-toggle="dropdown" aria-expanded="false">
+        Подкатегории: {{ category.title }}
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownWatchType">
+
+        {% for category in categories %}
+        <li><a class="dropdown-item" href="?type={{ category.slug }}">{{ category.title }}</a></li>
+        {% endfor %}
+
+    </ul>
+</div>

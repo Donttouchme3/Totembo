@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=150, verbose_name='Наименование категории')
+    title = models.CharField(max_length='150', verbose_name='Наименование категории')
     image = models.ImageField(upload_to='categories/', null=True, blank=True, verbose_name='Изображение')
     slug = models.SlugField(unique=True, null=True)
     parent = models.ForeignKey('self',
@@ -48,7 +48,7 @@ class Product(models.Model):
                                  related_name='products')
     slug = models.SlugField(unique=True, null=True)
     size = models.IntegerField(default=30, verbose_name='Размер в мм')
-    color = models.CharField(max_length=30, default='Серебро', verbose_name='Цвет/Материал')
+    color = models.CharField(max_length=30, default='Серебро',verbose_name='Цвет/Материал')
 
     def get_absolute_url(self):
         return reverse('product_detail', kwargs={'slug': self.slug})

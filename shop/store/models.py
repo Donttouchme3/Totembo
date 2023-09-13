@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 
 class Category(models.Model):
-    title = models.CharField(max_length='150', verbose_name='Наименование категории')
+    title = models.CharField(max_length=150, verbose_name='Наименование категории')
     image = models.ImageField(upload_to='categories/', null=True, blank=True, verbose_name='Изображение')
     slug = models.SlugField(unique=True, null=True)
     parent = models.ForeignKey('self',
